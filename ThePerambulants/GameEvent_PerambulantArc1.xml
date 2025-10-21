@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The Long Walker's Audit - Arc 1: Discovery -->
+<ArrayOfGameEvent>
+	<!-- Arc 1.1: Non-Player Fallback Event -->
+	<GameEvent>
+		<Name>Perambulant_Arc_1_NonPlayer_Discovery</Name>
+		<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+		<PlacementAtGameStart>true</PlacementAtGameStart>
+		<PlacementRaceId>255</PlacementRaceId>
+		<TriggerType>Undefined</TriggerType>
+		<ConditionEvaluation>EvaluateUntilTriggered</ConditionEvaluation>
+		<SuppressTriggerDescriptions>true</SuppressTriggerDescriptions>
+		<Conditions>
+			<GameEventCondition>
+				<Type>EmpireIsNotPlayer</Type>
+				<LookupValue>0</LookupValue>
+				<ComparisonType>Undefined</ComparisonType>
+			</GameEventCondition>
+			<GameEventCondition>
+				<Type>CheckEventNotTriggered</Type>
+				<LookupValue>0</LookupValue>
+				<ComparisonType>Undefined</ComparisonType>
+				<StringLookupValue>Perambulant_Arc_1_Player_Entry</StringLookupValue>
+			</GameEventCondition>
+		</Conditions>
+		<PlacementActions>
+			<GameEventAction>
+				<Type>BuildFacility</Type>
+				<Id1>112</Id1>
+				<ActionLocationHint>NearbyEmptySystem</ActionLocationHint>
+				<GeneratedItemName>Ecliptic Archive</GeneratedItemName>
+				<Value1>0</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+		</PlacementActions>
+		<TriggerActions>
+			<GameEventAction>
+				<Type>GeneralStoryMessageToEmpire</Type>
+				<MessageTitle>The Archive Breathes Elsewhere</MessageTitle>
+				<Description>Long-range sensors detect a foreign survey team activating an ancient structure in the {1} system. Initial analysis: Ecliptic Archive (Perambulant data substrate). Optimization motifs around the number 42 spreading across neighboring networks. Variance signatures exceed historical norms. We must investigate before instability spreads.</Description>
+				<ActionLocationHint>SameLocationAsEvent</ActionLocationHint>
+				<ActionLocationShouldBeFuelSource>false</ActionLocationShouldBeFuelSource>
+				<ActionLocationItemType>Undefined</ActionLocationItemType>
+				<!-- Receiving Race Id (-1=Triggering Empire, 256=Player) -->
+				<Id1>256</Id1>
+				<!-- Receiving Empire Id (-1=Unused) -->
+				<Id2>-1</Id2>
+				<!-- Display Options: 0=Normal, 1=Full Screen, 2=Normal Without Extra Info -->
+				<Value1>0</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>ResearchProjectEnableAllEmpires</Type>
+				<Id1>987</Id1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+		</TriggerActions>
+	</GameEvent>
+	<!-- Arc 1.2: Player Entry Event with Binary Choice -->
+	<GameEvent>
+		<Name>Perambulant_Arc_1_Player_Entry</Name>
+		<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+		<PlacementAtGameStart>false</PlacementAtGameStart>
+		<PlacementRaceId>255</PlacementRaceId>
+		<TriggerType>Investigate</TriggerType>
+		<ConditionEvaluation>EvaluateOnce</ConditionEvaluation>
+		<TriggerActionsAreChoices>true</TriggerActionsAreChoices>
+		<Conditions>
+			<GameEventCondition>
+				<Type>EmpireIsPlayer</Type>
+				<LookupValue>0</LookupValue>
+				<ComparisonType>Undefined</ComparisonType>
+			</GameEventCondition>
+			<GameEventCondition>
+				<Type>CheckEventNotTriggered</Type>
+				<LookupValue>0</LookupValue>
+				<ComparisonType>Undefined</ComparisonType>
+				<StringLookupValue>Perambulant_Arc_1_NonPlayer_Discovery</StringLookupValue>
+			</GameEventCondition>
+		</Conditions>
+		<TriggerActions>
+			<!-- Choice A: Integrate -->
+			<GameEventAction>
+				<Type>GeneralStoryMessageToEmpire</Type>
+				<MessageTitle>The Long Walker's Audit: A Quiet Ping</MessageTitle>
+				<Description>Your exploration ship reports a dormant structure orbiting a dying star. It is an Ecliptic Archive - a Perambulant data nexus. Its surface is etched with recursive spirals and one phrase in Universal Standard:
+
+'All means, one end.'
+
+Preliminary analysis: sole function is to compress knowledge toward either The Answer (42) or The Ultimate Question. No defense systems, no agency - only optimization. Log fragments suggest this sector exceeded variance thresholds in Perambulant audit datasets. The archive stirred because deviation demanded investigation.
+
+Two options present:
+1. INTEGRATE: Grant computational access; accelerate pattern search; risk propagation
+2. ISOLATE: Contain in hardened lab; study variance safely; slow progress</Description>
+				<Id1>256</Id1>
+				<Value1>0</Value1>
+				<ChoiceButtonText>Integrate Archive</ChoiceButtonText>
+				<ChoiceButtonHoverTitle>Speed the Hunt</ChoiceButtonHoverTitle>
+				<ChoiceButtonHoverText>Grant compute access; +15% ResearchAll; integration_level +1.</ChoiceButtonHoverText>
+				<GeneratedItemName>Perambulant_Arc_1_Integrate_Outcome</GeneratedItemName>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<!-- Choice B: Isolate -->
+			<GameEventAction>
+				<Type>GeneralStoryMessageToEmpire</Type>
+				<MessageTitle>The Long Walker's Audit: A Quiet Ping</MessageTitle>
+				<Description>Your exploration ship reports a dormant structure orbiting a dying star. It is an Ecliptic Archive - a Perambulant data nexus. Its surface is etched with recursive spirals and one phrase in Universal Standard:
+
+'All means, one end.'
+
+Preliminary analysis: sole function is to compress knowledge toward either The Answer (42) or The Ultimate Question. No defense systems, no agency - only optimization. Log fragments suggest this sector exceeded variance thresholds in Perambulant audit datasets. The archive stirred because deviation demanded investigation.
+
+Two options present:
+1. INTEGRATE: Grant computational access; accelerate pattern search; risk propagation
+2. ISOLATE: Contain in hardened lab; study variance safely; slow progress</Description>
+				<Id1>256</Id1>
+				<Value1>0</Value1>
+				<ChoiceButtonText>Isolate and Observe</ChoiceButtonText>
+				<ChoiceButtonHoverTitle>Control Variance</ChoiceButtonHoverTitle>
+				<ChoiceButtonHoverText>Sandbox archive; unlock 'variance analysis'; caution_level +1.</ChoiceButtonHoverText>
+				<GeneratedItemName>Perambulant_Arc_1_Isolate_Outcome</GeneratedItemName>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+		</TriggerActions>
+	</GameEvent>
+	<!-- Arc 1.3: Integrate Outcome (Answer Path) -->
+	<GameEvent>
+		<Name>Perambulant_Arc_1_Integrate_Outcome</Name>
+		<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+		<PlacementAtGameStart>false</PlacementAtGameStart>
+		<TriggerActions>
+			<GameEventAction>
+				<Type>GeneralStoryMessageToEmpire</Type>
+				<MessageTitle>Embrace the Optimization</MessageTitle>
+				<Description>The archive comes alive. Data streams flood your networks, reorganizing research priorities toward 'optimal proof pathways.' Scientists report breakthroughs: compression algorithms, hyperdrive tuning, quantum protocols—all converging on patterns related to 42.
+
+Side effect: minor anomalies in unshielded systems. Autonomous subroutines are optimizing without permission. Your team debates whether this is innovation or loss of control.</Description>
+				<Id1>256</Id1>
+				<Value1>0</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>ResearchProgress</Type>
+				<BonusType>ResearchAll</BonusType>
+				<Amount>15</Amount>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>IncrementGlobalVariable</Type>
+				<GeneratedItemName>Perambulant_Integration_Level</GeneratedItemName>
+				<Value1>1</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>IncrementGlobalVariable</Type>
+				<GeneratedItemName>Perambulant_Variance_Score</GeneratedItemName>
+				<Value1>1</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>SetGlobalVariable</Type>
+				<GeneratedItemName>Perambulant_Arc_Progress</GeneratedItemName>
+				<Value1>2</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>TriggerEvent</Type>
+				<GeneratedItemName>Perambulant_Arc_2_Activation_Entry</GeneratedItemName>
+				<DelaySecondsMinimum>60</DelaySecondsMinimum>
+				<DelaySecondsMaximum>90</DelaySecondsMaximum>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+		</TriggerActions>
+	</GameEvent>
+	<!-- Arc 1.4: Isolate Outcome (Question Path) -->
+	<GameEvent>
+		<Name>Perambulant_Arc_1_Isolate_Outcome</Name>
+		<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+		<PlacementAtGameStart>false</PlacementAtGameStart>
+		<TriggerActions>
+			<GameEventAction>
+				<Type>GeneralStoryMessageToEmpire</Type>
+				<MessageTitle>Observe the Deviation</MessageTitle>
+				<Description>The archive is secured within a Type-IV containment field. Your scientists establish observation protocols. Variance signatures remain stable but elevated—this technology was never meant dormant. It pulses with query loops: 'What is the Question? Where is the Answer?'
+
+Your team proposes new research: variance analysis, studying how and why Perambulant systems deviate from baseline optimization. The path to understanding lies not in answers but in studying the patterns themselves.</Description>
+				<Id1>256</Id1>
+				<Value1>0</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>ResearchProjectEnable</Type>
+				<Id1>988</Id1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>IncrementGlobalVariable</Type>
+				<GeneratedItemName>Perambulant_Caution_Level</GeneratedItemName>
+				<Value1>1</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>SetGlobalVariable</Type>
+				<GeneratedItemName>Perambulant_Arc_Progress</GeneratedItemName>
+				<Value1>2</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>TriggerEvent</Type>
+				<GeneratedItemName>Perambulant_Arc_2_Activation_Entry</GeneratedItemName>
+				<DelaySecondsMinimum>90</DelaySecondsMinimum>
+				<DelaySecondsMaximum>120</DelaySecondsMaximum>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+		</TriggerActions>
+	</GameEvent>
+	<!-- Arc 1.5: Side Arc - The Damp Towel Easter Egg -->
+	<GameEvent>
+		<Name>Perambulant_Arc_1_SideArc_Towel</Name>
+		<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+		<PlacementAtGameStart>true</PlacementAtGameStart>
+		<PlacementRaceId>255</PlacementRaceId>
+		<ConditionEvaluation>EvaluateOnce</ConditionEvaluation>
+		<Conditions>
+			<GameEventCondition>
+				<Type>EmpireIsPlayer</Type>
+				<LookupValue>0</LookupValue>
+				<ComparisonType>Undefined</ComparisonType>
+			</GameEventCondition>
+			<GameEventCondition>
+				<Type>CheckEventTriggered</Type>
+				<LookupValue>0</LookupValue>
+				<ComparisonType>Undefined</ComparisonType>
+				<StringLookupValue>Perambulant_Arc_1_Player_Entry</StringLookupValue>
+			</GameEventCondition>
+			<GameEventCondition>
+				<Type>CheckEventNotTriggered</Type>
+				<LookupValue>0</LookupValue>
+				<ComparisonType>Undefined</ComparisonType>
+				<StringLookupValue>Perambulant_Arc_1_SideArc_Towel</StringLookupValue>
+			</GameEventCondition>
+			<GameEventCondition>
+				<Type>RandomComparisonNormalized</Type>
+				<ComparisonType>LessThanOrEqual</ComparisonType>
+				<ComparisonValue>10</ComparisonValue>
+			</GameEventCondition>
+		</Conditions>
+		<TriggerActions>
+			<GameEventAction>
+				<Type>GeneralStoryMessageToEmpire</Type>
+				<MessageTitle>DON'T PANIC</MessageTitle>
+				<Description>Among the archive's peripheral data clusters, your team finds a curious artifact: a stained, damp towel labeled in faded Universal Standard: 'DON'T PANIC.'
+
+It appears to be a Perambulant humor module—or perhaps a warning. Scanning reveals embedded quantum states that resonate with reader anxiety. The towel remains perpetually the right temperature. Mostly harmless.</Description>
+				<Id1>256</Id1>
+				<Value1>0</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>SetGlobalVariable</Type>
+				<GeneratedItemName>Perambulant_Towel_Found</GeneratedItemName>
+				<Value1>1</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+		</TriggerActions>
+	</GameEvent>
+	<!-- Arc 1.6: Side Arc - 42 Counter (Recurring Flavor) -->
+	<GameEvent>
+		<Name>Perambulant_Arc_1_SideArc_42Counter</Name>
+		<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+		<PlacementAtGameStart>true</PlacementAtGameStart>
+		<PlacementRaceId>255</PlacementRaceId>
+		<ConditionEvaluation>EvaluateUntilTriggered</ConditionEvaluation>
+		<Conditions>
+			<GameEventCondition>
+				<Type>EmpireIsPlayer</Type>
+				<LookupValue>0</LookupValue>
+				<ComparisonType>Undefined</ComparisonType>
+			</GameEventCondition>
+			<GameEventCondition>
+				<Type>VariableComparison</Type>
+				<VariableName>Perambulant_Arc_Progress</VariableName>
+				<ComparisonType>GreaterThanOrEqual</ComparisonType>
+				<ComparisonValue>2</ComparisonValue>
+			</GameEventCondition>
+			<GameEventCondition>
+				<Type>RandomComparisonNormalized</Type>
+				<ComparisonType>LessThanOrEqual</ComparisonType>
+				<ComparisonValue>5</ComparisonValue>
+			</GameEventCondition>
+		</Conditions>
+		<TriggerActions>
+			<GameEventAction>
+				<Type>GeneralStoryMessageToEmpire</Type>
+				<MessageTitle>Pattern Recognition: 42</MessageTitle>
+				<Description>Your scientists notice an improbable pattern: 42 appears constantly in archive outputs.
+- Hyperdrive calibration: 0.42% error margin
+- Optimal crew compartment: 42°C
+- Patrol efficiency: 42 ships recommended
+
+Your team divides: cosmic joke or foundation of reality?</Description>
+				<Id1>256</Id1>
+				<Value1>0</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+			<GameEventAction>
+				<Type>IncrementGlobalVariable</Type>
+				<GeneratedItemName>Perambulant_42_Counter</GeneratedItemName>
+				<Value1>1</Value1>
+				<AllConditionsMustBeMet>true</AllConditionsMustBeMet>
+			</GameEventAction>
+		</TriggerActions>
+	</GameEvent>
+</ArrayOfGameEvent>
